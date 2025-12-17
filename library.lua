@@ -3219,7 +3219,7 @@ function Library:CreateWindow(...)
 
 	local MainSectionInner = Library:Create('Frame', {
 		BackgroundColor3 = Library.BackgroundColor;
-		BackgroundTransparency = 1;
+		BackgroundTransparency = 0;
 		Position = UDim2.new(0, 0, 0, 0);
 		Size = UDim2.new(1, 0, 1, 0);
 		ZIndex = 1;
@@ -3232,8 +3232,10 @@ function Library:CreateWindow(...)
 
 	local TabArea = Library:Create('Frame', {
 		BackgroundTransparency = 1;
-		Position = UDim2.new(0, 8, 0, 8);
-		Size = UDim2.new(1, -16, 0, 21);
+		BorderColor3 = Library.MainColor;
+        BackgroundColor3 = Library.MainColor;
+		Position = UDim2.new(0, 1, 0, 1);
+		Size = UDim2.new(1, -2, 0, 28);
 		ZIndex = 1;
 		Parent = MainSectionInner;
 	});
@@ -3247,6 +3249,7 @@ function Library:CreateWindow(...)
 
 	local TabContainer = Library:Create('Frame', {
 		BackgroundColor3 = Library.MainColor;
+        BackgroundTransparency = 1;
 		Position = UDim2.new(0, 8, 0, 30);
 		Size = UDim2.new(1, -16, 1, -38);
 		BorderSizePixel = 0;
@@ -3254,6 +3257,10 @@ function Library:CreateWindow(...)
 		Parent = MainSectionInner;
 	});
 
+	Library:AddToRegistry(TabArea, {
+		BackgroundColor3 = 'MainColor',
+		BorderColor3 = 'MainColor'
+	});
 
 	Library:AddToRegistry(TabContainer, {
 		BackgroundColor3 = 'MainColor';
