@@ -3121,9 +3121,15 @@ function Library:Notify(Text, Time)
 
 						NotifyOuter:Destroy();
 					end) end);
-			end end)
+			end end)    
 	end
 
+	InnerFrame.MouseEnter:Connect(function()
+        if not game:GetService("UserInputService"):IsMouseButtonPressed(Enum.UserInputType.MouseButton1) then return; end
+        NotifyOuter:TweenSize(UDim2.new(0, 0, 0, 20), 'Out', 'Quad', 0.4, true);
+        task.wait(0.4);
+        NotifyOuter:Destroy();
+    end);
 	InnerFrame.InputBegan:Connect(inputBegan)
 	pcall(NotifyOuter.TweenSize, NotifyOuter, UDim2.new(0, XSize + 8 + 4, 0, YSize), 'Out', 'Quad', 0.4, true);
 
