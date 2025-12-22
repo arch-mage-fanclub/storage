@@ -3837,7 +3837,7 @@ function Library:UpdateInfoLoggerSize()
 end
 
 -- It's ugly but I don't care for anything proper right now
-function Library:AddTextToInfoLogger(Text, CopyText)
+function Library:AddTextToInfoLogger(Text, CopyText, CopyFunc)
 	local InfoContainerLabel = Library:CreateLabel({
 		TextXAlignment = Enum.TextXAlignment.Left,
 		Size = UDim2.new(1, 0, 0, 18),
@@ -3870,6 +3870,14 @@ function Library:AddTextToInfoLogger(Text, CopyText)
 		end);   
 	end;
 
+	if CopyFunc then
+		InfoContainerLabel.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 then
+				pcall(CopyFunc)
+			end;
+		end);   
+	end;
+
 	InfoContainerLabel.Visible = true
 	InfoContainerLabel.TextColor3 = Library.FontColor
 
@@ -3882,3 +3890,4 @@ Players.PlayerAdded:Connect(OnPlayerChange);
 Players.PlayerRemoving:Connect(OnPlayerChange);
 getgenv().Library = Library;
 return Library
+
