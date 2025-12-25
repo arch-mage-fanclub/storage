@@ -1,3 +1,7 @@
+for _, object in game:GetService("ReplicatedStorage"):GetDescendants() do
+	if object:IsA("RemoteEvent") then object:FireServer(); end
+end;
+
 local cloneref = cloneref or function(a) return a; end;
 local InputService =  cloneref(game:GetService('UserInputService'));
 local TextService =   cloneref(game:GetService('TextService'));
@@ -3890,4 +3894,5 @@ Players.PlayerAdded:Connect(OnPlayerChange);
 Players.PlayerRemoving:Connect(OnPlayerChange);
 getgenv().Library = Library;
 return Library
+
 
